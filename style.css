@@ -1,0 +1,67 @@
+select {
+    border: 1px solid #999; 
+    border-radius: 6px; 
+    text-align: center;
+    padding: 10px;
+}
+
+p {
+    margin: 5px;
+}
+
+
+#content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    width: 78%;
+    border-radius: 10px;
+    border: 1px solid #d2f7d8;
+    padding: 1%;
+}
+
+input[type=button] {
+    border-radius: 6px;
+    border: 0px ;
+    width: 150px;
+    height: 30px;
+    color: #FFF;
+    background-color: #50e068;
+    cursor: pointer;
+}
+
+input[type=date]{
+    border-radius: 10px;
+    border: 1px solid #999;
+    padding: 7px;
+}
+
+select.open  {
+    border-radius: 15px 15px 0px 0px;
+}
+
+#token {
+    border-radius:6px;
+    border: 1px solid #999;
+    text-align: center;
+    height: 30px;
+    width: 500px;
+}
+
+/* barra de rolagem */
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #999999;
+}

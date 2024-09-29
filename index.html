@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="JS/script.js"></script>
+    <script src="JS/style.js"></script>
+    <script src="JS/getColaborators.js"></script>
+    <script src="JS/getHours.js"></script>
+    <script src="JS/util.js"></script>
+    <script src="JS/getAllowance.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <h2>Ponto Mais - CNM</h2>
+    <form style="display: flex; gap: 15px; flex-direction: column;">
+        <div style="display: flex; justify-content: space-between;">
+            <div>
+                <select id="search_colaborator">
+                    <option value="">
+                        Selecione um Colaborador
+                    </option>
+                </select>
+                <select id="search_team">
+                    <option value="">
+                        Selecione uma Equipe
+                    </option>
+                </select>
+            </div>
+            <div>
+                <input type="text" id="token" placeholder="Seu token de acesso">
+                <input type="button" id="getToken" value="cadastrar token">
+            </div>
+        </div>
+        <div>
+            <div>
+                <label for="start_at">Data Inicial</label>
+                <input type="date" name="start_at" id="start_at">
+                <label for="end_at">Data Final</label>
+                <input type="date" name="end_at" id="end_at">
+            </div>
+        </div>
+
+        <input id="search" type="button" value="Buscar">
+    </form>
+    <br>
+    <br>
+    <div style="display: flex; justify-content: center;">
+        <div id="content"></div>
+        <div id="content_total"></div>
+    </div>
+</body>
+</html>

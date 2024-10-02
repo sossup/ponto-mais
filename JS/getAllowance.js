@@ -13,8 +13,6 @@ async function getAllowances(id) {
         }
     };
 
-    console.log(payload);
-
     try {
         const response = await fetch(url_exemptions, {
             method: "POST",
@@ -28,7 +26,6 @@ async function getAllowances(id) {
         if (!response.ok) throw new Exception(response.status);
 
         const data = await response.json();
-        console.log(data.data[0][0].data)
         return data.data[0][0].data;
     } catch (error) {
     }
@@ -48,6 +45,7 @@ async function allowances(id) {
         if(allowance.all_day == "Sim") {
             body.textContent = "Abono para o dia todo";
             body.style.color = "orange";
+            total_hours_positive.push(shift_time);
         } else {
             const hr = document.createElement('hr');
             hr.style.width = '50%';

@@ -1,3 +1,7 @@
+let shift_time;
+let total_hours_positive = [];
+let total_hours_negative = [];
+
 async function getHours(id) {
     const start_at = document.getElementById("start_at");
     const end_at = document.getElementById("end_at");
@@ -34,6 +38,7 @@ async function hours(id) {
     const hours = await getHours(id);
 
     hours.forEach(hour => {
+        shift_time = hour.shift_time;
         cardHours(hour);
     });
 }
@@ -48,7 +53,7 @@ function cardHours(hour) {
     card(div);
     cardHeader(header, hour.date);
     cardBody(body, hour.time_cards, hour.date);
-    cardFooter(footer, hour.time_cards)
+    cardFooter(body, footer, hour.time_cards)
 
     div.append(header);
     div.append(body);
@@ -92,6 +97,7 @@ function cardBody(body, times, date){
     if(times.length === 0){
         body.style.color = "red";
         body.textContent = `Sem Ponto`;
+        total_hours_negative.push(shift_time);
         return;
     }
 
@@ -107,10 +113,62 @@ function cardBody(body, times, date){
     });
 }
 
-function cardFooter(footer,times) {
+function cardFooter(body, footer,times) {
+    const div = document.createElement('div');
+
     if(times.length === 0){
         return;
     }
 
-    
+    let a = [];
+    let b = [];
+    let hours = [];
+
+    times.forEach((time, index) => {
+        if (index % 2 === 0) {
+            b.push(time);
+        } else {
+            a.push(time);
+        }
+    })
+
+    a.forEach((time, index) => {
+        if(b[index]){
+            hours.push(hoursDiff(time.csv_value, b[index].csv_value).hours)
+        }
+    })
+
+    const workingTime = hoursSum(hours);
+    const diff = hoursDiff(workingTime, shift_time);
+
+    div.textContent = diff.hours
+    if(diff.status === "positive"){
+        div.style.background = "#50e068";
+        total_hours_positive.push(diff.hours)
+    } else {
+        div.style.background = "#ff6e6e";
+        total_hours_negative.push(diff.hours)
+    }
+
+    div.style.borderRadius = "10px";
+
+
+    body.append(div)
+}
+
+function totalHours() {
+    const content = document.getElementById("content_total");
+
+    const hoursPositive = hoursSum(total_hours_positive);
+    const hoursNegative = hoursSum(total_hours_negative);
+
+    const diff = hoursDiff(hoursPositive, hoursNegative);
+
+    content.textContent = diff.hours;
+
+    if(diff.status === "positive"){
+        content.style.background = "#50e068";
+    } else {
+        content.style.background = "#ff6e6e";
+    }
 }

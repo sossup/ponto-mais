@@ -32,3 +32,16 @@ function forMinutes(hour) {
     const [hours, minutes] = hour.split(':').map(Number);
     return hours * 60 + minutes;
 }
+
+function hoursSum(hoursArray) {
+    let totalMinutes = 0;
+
+    hoursArray.forEach(hour => {
+        totalMinutes += forMinutes(hour);
+    });
+
+    const hours = Math.floor(totalMinutes / 60).toString().padStart(2, '0');
+    const minutes = (totalMinutes % 60).toString().padStart(2, '0');
+
+    return `${hours}:${minutes}`;
+}
